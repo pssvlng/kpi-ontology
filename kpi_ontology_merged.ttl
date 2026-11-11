@@ -1,0 +1,1299 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix kpi: <https://semantic.adorsys.com/meta/kpi/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+
+# ============================================================================
+# SKOS Vocabulary — Aggregation Operators
+# ============================================================================
+
+<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> a skos:ConceptScheme;
+  skos:prefLabel "Aggregationsoperator-Vokabular"@de, "Aggregation Operator Vocabulary"@en;
+  rdfs:label "Aggregationsoperator-Vokabular"@de, "Aggregation Operator Vocabulary"@en;
+  dcterms:title "Kontrolliertes Vokabular der Aggregationsoperatoren für Leistungskennzahlen"@de,
+                "Controlled Vocabulary of Aggregation Operators for Key Performance Indicators"@en;
+  dcterms:description """
+        Kontrolliertes SKOS-Vokabular aller Aggregationsoperatoren, die zur Berechnung von
+        Leistungskennzahlen (KPIs) über Instanzdaten verwendet werden können. Umfasst statistische
+        Standardoperatoren wie Summe, Durchschnitt, Anzahl, Minimum und Maximum sowie erweiterte
+        Operatoren wie Median, Standardabweichung und Varianz.
+
+        Dieses Vokabular wird von der KPI-Ontologie (kpi:1.0) referenziert und definiert die
+        zulässigen Aggregationsfunktionen als SKOS-Konzepte.
+    """@de;
+  dcterms:description """
+        Controlled SKOS vocabulary of all aggregation operators that can be used to compute
+        Key Performance Indicators (KPIs) over instance data. Includes standard statistical
+        operators such as sum, average, count, minimum and maximum, as well as extended
+        operators such as median, standard deviation and variance.
+
+        This vocabulary is referenced by the KPI Ontology (kpi:1.0) and defines the
+        permissible aggregation functions as SKOS concepts.
+    """@en;
+  skos:definition "Kontrolliertes Vokabular aller Aggregationsoperatoren, die zur Berechnung von Leistungskennzahlen über Instanzdaten verwendet werden können. Umfasst statistische Standardoperatoren wie Summe, Durchschnitt, Anzahl, Minimum und Maximum sowie erweiterte Operatoren wie Median, Standardabweichung und Varianz."@de;
+  skos:definition "Controlled vocabulary of all aggregation operators that can be used to compute key performance indicators over instance data. Includes standard statistical operators such as sum, average, count, minimum and maximum, as well as extended operators such as median, standard deviation and variance."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  dcterms:contributor "Johann Bergh <Johann.Bergh@adorsys.com>";
+  dcterms:creator "Johann Bergh <Johann.Bergh@adorsys.com>" ;
+  dcterms:created "2026-04-08"^^xsd:date ;
+  dcterms:modified "2026-04-09"^^xsd:date ;
+  owl:versionInfo "1.0" ;
+  <http://purl.org/spar/pso/hasStatus> <http://purl.org/spar/pso/draft> ;
+  skos:hasTopConcept kpi:Sum, kpi:Count, kpi:Average, kpi:Min, kpi:Max,
+                     kpi:Median, kpi:StandardDeviation, kpi:Variance,
+                     kpi:CountDistinct, kpi:GroupConcat, kpi:Sample .
+
+# ============================================================================
+# Aggregation Operator Class
+# ============================================================================
+
+kpi:AggregationOperator a owl:Class;
+  rdfs:subClassOf skos:Concept;
+  rdfs:label "Aggregationsoperator"@de, "Aggregation Operator"@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:definition """Ein Aggregationsoperator ist eine Art von Konzept (Genus: skos:Concept), das eine mathematische oder statistische Funktion repräsentiert, die auf eine Menge von Werten angewendet wird, um einen einzelnen zusammenfassenden Wert zu erzeugen (Differentia specifica).
+
+Genus: Konzept (skos:Concept)
+
+Differentia specifica:
+1. Repräsentiert eine mathematische/statistische Aggregationsfunktion
+2. Wird auf eine Menge numerischer Werte aus Instanzdaten angewendet
+3. Erzeugt genau einen zusammenfassenden Ausgabewert
+4. Ist Teil des kontrollierten Vokabulars <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>
+
+Beispiele:
+- kpi:Average (Durchschnitt) - Berechnet den arithmetischen Mittelwert
+- kpi:Sum (Summe) - Berechnet die Gesamtsumme
+- kpi:Count (Anzahl) - Zählt die Anzahl der Werte
+
+Invarianten:
+- Muss genau einem skos:ConceptScheme zugeordnet sein (<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>)
+- Muss eine skos:notation haben"""@de;
+  rdfs:comment """An Aggregation Operator is a type of concept (Genus: skos:Concept) that represents a mathematical or statistical function applied to a set of values to produce a single summary value (Differentia specifica).
+
+Genus: Concept (skos:Concept)
+
+Differentia specifica:
+1. Represents a mathematical/statistical aggregation function
+2. Applied to a set of numerical values from instance data
+3. Produces exactly one summary output value
+4. Is part of the controlled vocabulary <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>
+
+Examples:
+- kpi:Average - Computes the arithmetic mean
+- kpi:Sum - Computes the total sum
+- kpi:Count - Counts the number of values
+
+Invariants:
+- Must be assigned to exactly one skos:ConceptScheme (<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>)
+- Must have a skos:notation"""@en .
+
+# ============================================================================
+# Aggregation Operator Individuals
+# ============================================================================
+
+kpi:Sum a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Summe"@de, "Sum"@en;
+  rdfs:label "Summe"@de, "Sum"@en;
+  skos:notation "SUM";
+  skos:definition "Berechnet die Gesamtsumme aller Werte in der aggregierten Menge. Entspricht der SPARQL-Funktion SUM()."@de;
+  skos:definition "Computes the total sum of all values in the aggregated set. Corresponds to the SPARQL function SUM()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Count a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Anzahl"@de, "Count"@en;
+  rdfs:label "Anzahl"@de, "Count"@en;
+  skos:notation "COUNT";
+  skos:definition "Zählt die Gesamtanzahl der Werte in der aggregierten Menge, einschließlich Duplikate. Entspricht der SPARQL-Funktion COUNT()."@de;
+  skos:definition "Counts the total number of values in the aggregated set, including duplicates. Corresponds to the SPARQL function COUNT()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Average a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Durchschnitt"@de, "Average"@en;
+  rdfs:label "Durchschnitt"@de, "Average"@en;
+  skos:notation "AVG";
+  skos:definition "Berechnet den arithmetischen Mittelwert aller Werte in der aggregierten Menge. Entspricht der SPARQL-Funktion AVG()."@de;
+  skos:definition "Computes the arithmetic mean of all values in the aggregated set. Corresponds to the SPARQL function AVG()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Min a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Minimum"@de, "Minimum"@en;
+  rdfs:label "Minimum"@de, "Minimum"@en;
+  skos:notation "MIN";
+  skos:definition "Ermittelt den kleinsten Wert in der aggregierten Menge. Entspricht der SPARQL-Funktion MIN()."@de;
+  skos:definition "Determines the smallest value in the aggregated set. Corresponds to the SPARQL function MIN()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Max a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Maximum"@de, "Maximum"@en;
+  rdfs:label "Maximum"@de, "Maximum"@en;
+  skos:notation "MAX";
+  skos:definition "Ermittelt den größten Wert in der aggregierten Menge. Entspricht der SPARQL-Funktion MAX()."@de;
+  skos:definition "Determines the largest value in the aggregated set. Corresponds to the SPARQL function MAX()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Median a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Median"@de, "Median"@en;
+  rdfs:label "Median"@de, "Median"@en;
+  skos:notation "MEDIAN";
+  skos:definition "Ermittelt den Zentralwert der sortierten aggregierten Menge, der die obere von der unteren Hälfte trennt. Nicht als native SPARQL-Funktion verfügbar, kann aber durch Unterabfragen berechnet werden."@de;
+  skos:definition "Determines the middle value of the sorted aggregated set, separating the upper half from the lower half. Not available as a native SPARQL function but can be computed through subqueries."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:StandardDeviation a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Standardabweichung"@de, "Standard Deviation"@en;
+  rdfs:label "Standardabweichung"@de, "Standard Deviation"@en;
+  skos:notation "STDEV";
+  skos:definition "Berechnet die Standardabweichung der Werte in der aggregierten Menge als Maß für die Streuung um den Mittelwert. Nicht als native SPARQL-Funktion verfügbar, aber in einigen Triplestore-Erweiterungen unterstützt."@de;
+  skos:definition "Computes the standard deviation of values in the aggregated set as a measure of dispersion around the mean. Not available as a native SPARQL function but supported in some triplestore extensions."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Variance a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Varianz"@de, "Variance"@en;
+  rdfs:label "Varianz"@de, "Variance"@en;
+  skos:notation "VAR";
+  skos:definition "Berechnet die Varianz der Werte in der aggregierten Menge als Quadrat der Standardabweichung. Nicht als native SPARQL-Funktion verfügbar, aber in einigen Triplestore-Erweiterungen unterstützt."@de;
+  skos:definition "Computes the variance of values in the aggregated set as the square of the standard deviation. Not available as a native SPARQL function but supported in some triplestore extensions."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:CountDistinct a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Eindeutige Anzahl"@de, "Count Distinct"@en;
+  rdfs:label "Eindeutige Anzahl"@de, "Count Distinct"@en;
+  skos:notation "COUNT_DISTINCT";
+  skos:definition "Zählt die Anzahl der eindeutigen (verschiedenen) Werte in der aggregierten Menge. Entspricht der SPARQL-Funktion COUNT(DISTINCT ...)."@de;
+  skos:definition "Counts the number of unique (distinct) values in the aggregated set. Corresponds to the SPARQL function COUNT(DISTINCT ...)."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:GroupConcat a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Gruppenverkettung"@de, "Group Concatenation"@en;
+  rdfs:label "Gruppenverkettung"@de, "Group Concatenation"@en;
+  skos:notation "GROUP_CONCAT";
+  skos:definition "Verkettet alle Zeichenkettenwerte in der aggregierten Menge zu einer einzigen Zeichenkette mit einem Trennzeichen. Entspricht der SPARQL-Funktion GROUP_CONCAT()."@de;
+  skos:definition "Concatenates all string values in the aggregated set into a single string with a separator. Corresponds to the SPARQL function GROUP_CONCAT()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Sample a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Stichprobe"@de, "Sample"@en;
+  rdfs:label "Stichprobe"@de, "Sample"@en;
+  skos:notation "SAMPLE";
+  skos:definition "Wählt einen beliebigen repräsentativen Wert aus der aggregierten Menge aus. Entspricht der SPARQL-Funktion SAMPLE()."@de;
+  skos:definition "Selects an arbitrary representative value from the aggregated set. Corresponds to the SPARQL function SAMPLE()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+
+# ============================================================================
+# SHACL Shape — Aggregation Operator
+# ============================================================================
+
+kpi:AggregationOperatorShape a sh:NodeShape;
+  sh:targetClass kpi:AggregationOperator;
+  rdfs:label "Aggregation Operator Shape"@en, "Aggregationsoperator-Shape"@de;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+
+  sh:property [
+    sh:path skos:inScheme;
+    sh:hasValue <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "in scheme"@en, "im Vokabular"@de;
+  ];
+
+  sh:property [
+    sh:path skos:notation;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "notation"@en, "Notation"@de;
+  ];
+
+  sh:property [
+    sh:path skos:prefLabel;
+    sh:minCount 1;
+    sh:name "preferred label"@en, "bevorzugte Bezeichnung"@de;
+  ] .
+
+
+# ============================================================================
+# Ontology Definition
+# ============================================================================
+
+kpi:1.0 a owl:Ontology;
+  rdfs:label "KPI-Ontologie"@de, "KPI Ontology"@en;
+  dcterms:title "Kennzahlen-Ontologie zur semantischen Beschreibung aggregierter Leistungskennzahlen"@de,
+                "Key Performance Indicator Ontology for Semantic Description of Aggregated Performance Metrics"@en;
+  dcterms:description """
+        Ontologie zur semantischen Modellierung von Leistungskennzahlen (Key Performance Indicators, KPIs),
+        die durch Aggregationsoperationen über Instanzdaten einer beliebigen Referenzontologie berechnet werden.
+
+        Diese Ontologie definiert das Konzept eines KPI als strukturierte Beschreibung, die folgende Elemente
+        zusammenführt: die Referenzontologie, aus deren Instanzdaten die Kennzahl berechnet wird; die zu
+        aggregierende Eigenschaft (z.B. Bruttogehalt); den Aggregationsoperator (z.B. Durchschnitt, Summe);
+        die Granularitätsdimensionen (z.B. Geschlecht, Standort), nach denen die Aggregation aufgeschlüsselt
+        wird; sowie die berechneten Aggregationsergebnisse mit ihren jeweiligen Dimensionswerten.
+
+        Die Ontologie ist allgemein gehalten und nicht an eine bestimmte Referenzontologie gebunden. Sie kann
+        für jede Domäne eingesetzt werden, in der aggregierte Kennzahlen aus RDF-Instanzdaten berechnet werden.
+        Die Aggregationsoperatoren werden als separates SKOS-Vokabular (<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>) gepflegt
+        und über owl:imports eingebunden.
+
+        Die Ontologie folgt den Prinzipien der Aristotelischen Logik mit klarer Genus-Differentia-Definition
+        aller Klassen und Eigenschaften.
+    """@de;
+  dcterms:description """
+        Ontology for the semantic modeling of Key Performance Indicators (KPIs) computed through aggregation
+        operations over instance data of any reference ontology.
+
+        This ontology defines the concept of a KPI as a structured description that brings together: the
+        reference ontology from whose instance data the metric is computed; the property to be aggregated
+        (e.g., gross salary); the aggregation operator (e.g., average, sum); the granularity dimensions
+        (e.g., gender, location) by which the aggregation is broken down; and the computed aggregation
+        results with their respective dimension values.
+
+        The ontology is designed to be general-purpose and is not bound to any specific reference ontology.
+        It can be used in any domain where aggregated metrics are computed from RDF instance data. The
+        aggregation operators are maintained as a separate SKOS vocabulary (<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>)
+        and included via owl:imports.
+
+        The ontology follows the principles of Aristotelian logic with clear genus-differentia definitions
+        for all classes and properties.
+    """@en;
+  rdfs:comment """Diese Ontologie definiert Leistungskennzahlen (KPIs) als semantische Strukturen, die Aggregationsoperationen über Instanzdaten beliebiger Referenzontologien beschreiben. Sie ermöglicht die vollständige Beschreibung einer Kennzahl einschließlich der Referenzontologie, der Aggregationseigenschaft, des Operators, der Granularitätsdimensionen und der berechneten Ergebnisse.
+
+Die Ontologie folgt den Prinzipien der Aristotelischen Logik mit klarer Genus-Differentia-Definition aller Entitäten."""@de;
+  rdfs:comment """This ontology defines Key Performance Indicators (KPIs) as semantic structures that describe aggregation operations over instance data of any reference ontology. It enables the complete description of a metric including the reference ontology, aggregation property, operator, granularity dimensions, and computed results.
+
+The ontology follows the principles of Aristotelian logic with clear genus-differentia definitions for all entities."""@en;
+  dcterms:contributor "Johann Bergh <Johann.Bergh@adorsys.com>";
+  dcterms:creator "Johann Bergh <Johann.Bergh@adorsys.com>" ;
+  dcterms:created "2026-04-08"^^xsd:date ;
+  dcterms:modified "2026-04-09"^^xsd:date ;
+  owl:versionInfo "1.0" ;
+  owl:imports <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> ;
+  <http://purl.org/spar/pso/hasStatus> <http://purl.org/spar/pso/draft> .
+
+
+# ============================================================================
+# Class Definitions
+# ============================================================================
+
+kpi:KeyPerformanceIndicator a owl:Class;
+  rdfs:subClassOf
+    [ a owl:Restriction;
+      owl:onProperty kpi:referenceOntologyURI;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onDataRange xsd:anyURI
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:aggregationPropertyURI;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onDataRange xsd:anyURI
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:hasAggregationOperator;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onClass kpi:AggregationOperator
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:hasGranularityDimension;
+      owl:allValuesFrom kpi:GranularityDimension
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:hasAggregationResult;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onClass kpi:AggregationResult
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:hasAggregationResult;
+      owl:allValuesFrom kpi:AggregationResult
+    ];
+  rdfs:label "Leistungskennzahl"@de, "Key Performance Indicator"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Eine Leistungskennzahl (KPI) ist eine Art von semantischer Beschreibung (Genus: owl:Class), die eine vollständig spezifizierte Aggregationsberechnung über Instanzdaten einer Referenzontologie repräsentiert (Differentia specifica).
+
+Genus: Semantische Beschreibung (owl:Class)
+
+Differentia specifica:
+1. Referenziert eine externe Ontologie, deren Instanzdaten als Datengrundlage dienen
+2. Spezifiziert eine Eigenschaft der Referenzontologie, über die aggregiert wird
+3. Verwendet genau einen Aggregationsoperator aus dem kontrollierten Vokabular (z.B. AVG, SUM, COUNT)
+4. Kann durch 0..n Granularitätsdimensionen aufgeschlüsselt werden (GROUP BY)
+5. Enthält 1..n berechnete Aggregationsergebnisse, jeweils mit ihren Dimensionswerten
+
+Wesentliche Eigenschaften:
+- referenceOntologyURI: URI der Referenzontologie, aus der die Daten stammen
+- aggregationPropertyURI: URI der Eigenschaft, über die aggregiert wird
+- hasAggregationOperator: Der verwendete Aggregationsoperator (genau einer)
+- hasGranularityDimension: Die Dimensionen, nach denen aufgeschlüsselt wird (0..n)
+- hasAggregationResult: Die berechneten Ergebniszeilen (1..n)
+- dataSourceURI: Optionale URI der Datenquelle (z.B. Named Graph)
+- filterExpression: Optionaler Filterausdruck zur Einschränkung der Instanzdaten
+
+Beziehungen:
+- Zu Aggregationsoperator: verwendet genau einen AggregationOperator
+- Zu Granularitätsdimension: hat 0..n GranularityDimension-Instanzen
+- Zu Aggregationsergebnis: hat 1..n AggregationResult-Instanzen
+
+Beispiele:
+- KPI "Durchschnittsgehalt nach Geschlecht": referenceOntologyURI = HROntology, aggregationPropertyURI = grossSalary, hasAggregationOperator = Average, hasGranularityDimension = [gender]
+- KPI "Durchschnittsgehalt nach Standort": referenceOntologyURI = HROntology, aggregationPropertyURI = grossSalary, hasAggregationOperator = Average, hasGranularityDimension = [location]
+- KPI "Anzahl Mitarbeiter nach Standort": referenceOntologyURI = HROntology, aggregationPropertyURI = location, hasAggregationOperator = Count, hasGranularityDimension = [location]
+
+Invarianten:
+- Muss genau eine referenceOntologyURI haben
+- Muss mindestens eine aggregationPropertyURI haben
+- Muss genau einen hasAggregationOperator haben
+- Muss mindestens ein hasAggregationResult haben"""@de;
+  rdfs:comment """A Key Performance Indicator (KPI) is a type of semantic description (Genus: owl:Class) that represents a fully specified aggregation computation over instance data of a reference ontology (Differentia specifica).
+
+Genus: Semantic Description (owl:Class)
+
+Differentia specifica:
+1. References an external ontology whose instance data serves as the data foundation
+2. Specifies a property of the reference ontology over which aggregation is performed
+3. Uses exactly one aggregation operator from the controlled vocabulary (e.g., AVG, SUM, COUNT)
+4. Can be broken down by 0..n granularity dimensions (GROUP BY)
+5. Contains 1..n computed aggregation results, each with their dimension values
+
+Essential Properties:
+- referenceOntologyURI: URI of the reference ontology from which data originates
+- aggregationPropertyURI: URI of the property being aggregated
+- hasAggregationOperator: The aggregation operator used (exactly one)
+- hasGranularityDimension: The dimensions by which results are broken down (0..n)
+- hasAggregationResult: The computed result rows (1..n)
+- dataSourceURI: Optional URI of the data source (e.g., named graph)
+- filterExpression: Optional filter expression to restrict instance data
+
+Relationships:
+- To Aggregation Operator: uses exactly one AggregationOperator
+- To Granularity Dimension: has 0..n GranularityDimension instances
+- To Aggregation Result: has 1..n AggregationResult instances
+
+Examples:
+- KPI "Average Salary by Gender": referenceOntologyURI = HROntology, aggregationPropertyURI = grossSalary, hasAggregationOperator = Average, hasGranularityDimension = [gender]
+- KPI "Average Salary by Location": referenceOntologyURI = HROntology, aggregationPropertyURI = grossSalary, hasAggregationOperator = Average, hasGranularityDimension = [location]
+- KPI "Employee Count by Location": referenceOntologyURI = HROntology, aggregationPropertyURI = location, hasAggregationOperator = Count, hasGranularityDimension = [location]
+
+Invariants:
+- Must have exactly one referenceOntologyURI
+- Must have at least one aggregationPropertyURI
+- Must have exactly one hasAggregationOperator
+- Must have at least one hasAggregationResult"""@en .
+
+kpi:GranularityDimension a owl:Class;
+  rdfs:subClassOf
+    [ a owl:Restriction;
+      owl:onProperty kpi:granularityPropertyURI;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onDataRange xsd:anyURI
+    ];
+  rdfs:label "Granularitätsdimension"@de, "Granularity Dimension"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Eine Granularitätsdimension ist eine Art von Strukturelement (Genus: owl:Class), das eine Aufschlüsselungsachse für eine Leistungskennzahl repräsentiert und auf eine Eigenschaft der Referenzontologie verweist, nach der die Aggregationsergebnisse gruppiert werden (Differentia specifica).
+
+Genus: Strukturelement (owl:Class)
+
+Differentia specifica:
+1. Referenziert eine Eigenschaft (Data Property oder Object Property) der Referenzontologie
+2. Definiert eine GROUP-BY-Achse für die Aggregationsberechnung
+3. Bestimmt, nach welchen Kriterien die Aggregationsergebnisse aufgeschlüsselt werden
+4. Kann einen menschenlesbaren Bezeichner (dimensionLabel) tragen
+
+Semantik:
+- Jede Granularitätsdimension repräsentiert ein Attribut, nach dem die Instanzdaten gruppiert werden
+- Die Kombination aller Dimensionswerte über alle Granularitätsdimensionen bildet den Schlüssel eines Aggregationsergebnisses
+- Ohne Granularitätsdimensionen wird ein einziger Gesamtaggregationswert berechnet
+
+Beispiele:
+- Geschlecht: granularityPropertyURI = "http://example.org/hr/ontology/gender"
+- Standort: granularityPropertyURI = "http://example.org/hr/ontology/location"
+- Bildungsniveau: granularityPropertyURI = "http://example.org/hr/ontology/educationLevel"
+
+Invarianten:
+- Muss genau eine granularityPropertyURI haben"""@de;
+  rdfs:comment """A Granularity Dimension is a type of structural element (Genus: owl:Class) that represents a breakdown axis for a key performance indicator and references a property of the reference ontology by which aggregation results are grouped (Differentia specifica).
+
+Genus: Structural Element (owl:Class)
+
+Differentia specifica:
+1. References a property (Data Property or Object Property) of the reference ontology
+2. Defines a GROUP BY axis for the aggregation computation
+3. Determines the criteria by which aggregation results are broken down
+4. Can carry a human-readable label (dimensionLabel)
+
+Semantics:
+- Each granularity dimension represents an attribute by which instance data is grouped
+- The combination of all dimension values across all granularity dimensions forms the key of an aggregation result
+- Without granularity dimensions, a single total aggregation value is computed
+
+Examples:
+- Gender: granularityPropertyURI = "http://example.org/hr/ontology/gender"
+- Location: granularityPropertyURI = "http://example.org/hr/ontology/location"
+- Education Level: granularityPropertyURI = "http://example.org/hr/ontology/educationLevel"
+
+Invariants:
+- Must have exactly one granularityPropertyURI"""@en .
+
+kpi:AggregationResult a owl:Class;
+  rdfs:subClassOf
+    [ a owl:Restriction;
+      owl:onProperty kpi:aggregationValue;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onDataRange xsd:decimal
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:hasDimensionValue;
+      owl:allValuesFrom kpi:DimensionValue
+    ];
+  rdfs:label "Aggregationsergebnis"@de, "Aggregation Result"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Ein Aggregationsergebnis ist eine Art von Datensatz (Genus: owl:Class), der den berechneten numerischen Wert einer Aggregationsoperation für eine bestimmte Kombination von Dimensionswerten repräsentiert (Differentia specifica).
+
+Genus: Datensatz (owl:Class)
+
+Differentia specifica:
+1. Enthält genau einen numerischen Aggregationswert (aggregationValue)
+2. Ist einer bestimmten Kombination von Dimensionswerten zugeordnet (0..n DimensionValue)
+3. Repräsentiert eine Zeile im Ergebnis einer Aggregationsabfrage
+4. Die Anzahl der DimensionValue-Zuordnungen entspricht der Anzahl der GranularityDimension-Instanzen des übergeordneten KPI
+
+Semantik:
+- Jedes Aggregationsergebnis entspricht einer Zeile in der Ergebnistabelle einer SPARQL-GROUP-BY-Abfrage
+- Der aggregationValue ist das Ergebnis der Anwendung des Aggregationsoperators auf die gruppierten Instanzdaten
+- Die DimensionValue-Instanzen identifizieren die spezifische Gruppe (Zeile) innerhalb der Ergebnisse
+
+Beispiele:
+- Ergebnis: aggregationValue = 3456.78, hasDimensionValue = [geschlecht="M"]
+- Ergebnis: aggregationValue = 2890.12, hasDimensionValue = [geschlecht="W", bildungsniveau="Abitur"]
+- Ergebnis: aggregationValue = 7894.12, hasDimensionValue = [ort="Berlin"]
+
+Invarianten:
+- Muss genau einen aggregationValue haben
+- Die Anzahl der DimensionValue-Instanzen muss mit der Anzahl der Granularitätsdimensionen des zugehörigen KPI übereinstimmen"""@de;
+  rdfs:comment """An Aggregation Result is a type of data record (Genus: owl:Class) that represents the computed numerical value of an aggregation operation for a specific combination of dimension values (Differentia specifica).
+
+Genus: Data Record (owl:Class)
+
+Differentia specifica:
+1. Contains exactly one numerical aggregation value (aggregationValue)
+2. Is assigned to a specific combination of dimension values (0..n DimensionValue)
+3. Represents one row in the result of an aggregation query
+4. The number of DimensionValue assignments corresponds to the number of GranularityDimension instances of the parent KPI
+
+Semantics:
+- Each aggregation result corresponds to one row in the result table of a SPARQL GROUP BY query
+- The aggregationValue is the result of applying the aggregation operator to the grouped instance data
+- The DimensionValue instances identify the specific group (row) within the results
+
+Examples:
+- Result: aggregationValue = 3456.78, hasDimensionValue = [gender="M"]
+- Result: aggregationValue = 2890.12, hasDimensionValue = [gender="W", educationLevel="Abitur"]
+- Result: aggregationValue = 7894.12, hasDimensionValue = [location="Berlin"]
+
+Invariants:
+- Must have exactly one aggregationValue
+- The number of DimensionValue instances must match the number of granularity dimensions of the associated KPI"""@en .
+
+kpi:DimensionValue a owl:Class;
+  rdfs:subClassOf
+    [ a owl:Restriction;
+      owl:onProperty kpi:forDimension;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onClass kpi:GranularityDimension
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:dimensionValueLiteral;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+      owl:onDataRange xsd:string
+    ],
+    [ a owl:Restriction;
+      owl:onProperty kpi:forDimension;
+      owl:allValuesFrom kpi:GranularityDimension
+    ];
+  rdfs:label "Dimensionswert"@de, "Dimension Value"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Ein Dimensionswert ist eine Art von Wertezuordnung (Genus: owl:Class), die den konkreten Wert einer Granularitätsdimension innerhalb eines bestimmten Aggregationsergebnisses repräsentiert (Differentia specifica).
+
+Genus: Wertezuordnung (owl:Class)
+
+Differentia specifica:
+1. Verweist auf genau eine Granularitätsdimension (forDimension)
+2. Enthält genau einen konkreten Literalwert (dimensionValueLiteral)
+3. Ist genau einem Aggregationsergebnis zugeordnet (über hasDimensionValue)
+4. Bildet zusammen mit anderen DimensionValue-Instanzen den Schlüssel eines Aggregationsergebnisses
+
+Semantik:
+- Jeder Dimensionswert ist eine Zelle in einer Ergebniszeile
+- Er ordnet einer Granularitätsdimension ihren konkreten Wert zu
+- Die Gesamtheit aller Dimensionswerte eines Aggregationsergebnisses identifiziert die Gruppe
+
+Beispiele:
+- DimensionValue: forDimension = [geschlecht], dimensionValueLiteral = "M"
+- DimensionValue: forDimension = [ort], dimensionValueLiteral = "Frankfurt am Main"
+- DimensionValue: forDimension = [bildungsniveau], dimensionValueLiteral = "Abitur"
+
+Invarianten:
+- Muss genau eine forDimension-Zuordnung haben
+- Muss genau einen dimensionValueLiteral haben"""@de;
+  rdfs:comment """A Dimension Value is a type of value assignment (Genus: owl:Class) that represents the concrete value of a granularity dimension within a specific aggregation result (Differentia specifica).
+
+Genus: Value Assignment (owl:Class)
+
+Differentia specifica:
+1. References exactly one granularity dimension (forDimension)
+2. Contains exactly one concrete literal value (dimensionValueLiteral)
+3. Is assigned to exactly one aggregation result (via hasDimensionValue)
+4. Together with other DimensionValue instances, forms the key of an aggregation result
+
+Semantics:
+- Each dimension value is a cell in a result row
+- It assigns a concrete value to a granularity dimension
+- The totality of all dimension values of an aggregation result identifies the group
+
+Examples:
+- DimensionValue: forDimension = [gender], dimensionValueLiteral = "M"
+- DimensionValue: forDimension = [location], dimensionValueLiteral = "Frankfurt am Main"
+- DimensionValue: forDimension = [educationLevel], dimensionValueLiteral = "Abitur"
+
+Invariants:
+- Must have exactly one forDimension assignment
+- Must have exactly one dimensionValueLiteral"""@en .
+
+
+# ============================================================================
+# Disjoint Classes
+# ============================================================================
+
+[ a owl:AllDisjointClasses;
+  owl:members ( kpi:KeyPerformanceIndicator kpi:GranularityDimension kpi:AggregationResult kpi:DimensionValue )
+] .
+
+
+# ============================================================================
+# Object Properties
+# ============================================================================
+
+kpi:hasAggregationOperator a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range kpi:AggregationOperator;
+  rdfs:label "hat Aggregationsoperator"@de, "has aggregation operator"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Beziehung (Genus: owl:ObjectProperty), die einer Leistungskennzahl genau einen Aggregationsoperator aus dem kontrollierten SKOS-Vokabular zuordnet (Differentia specifica).
+
+Genus: Beziehungs-Eigenschaft (owl:ObjectProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist AggregationOperator (skos:Concept aus <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>)
+3. Funktionale Eigenschaft (ein KPI hat genau einen Operator)
+4. Bestimmt die mathematische Aggregationsfunktion (SUM, AVG, COUNT, etc.)
+
+Semantik:
+- Subject: Die Leistungskennzahl
+- Predicate: "hat Aggregationsoperator"
+- Object: Der verwendete Aggregationsoperator
+
+Beispiele:
+- KPI "Durchschnittsgehalt" hasAggregationOperator kpi:Average
+- KPI "Mitarbeiteranzahl" hasAggregationOperator kpi:Count
+- KPI "Gesamtgehaltssumme" hasAggregationOperator kpi:Sum
+
+Kardinalität: 1..1 (genau ein Operator pro KPI)"""@de;
+  rdfs:comment """This property is a type of relationship (Genus: owl:ObjectProperty) that assigns exactly one aggregation operator from the controlled SKOS vocabulary to a key performance indicator (Differentia specifica).
+
+Genus: Relationship Property (owl:ObjectProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is AggregationOperator (skos:Concept from <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>)
+3. Functional property (a KPI has exactly one operator)
+4. Determines the mathematical aggregation function (SUM, AVG, COUNT, etc.)
+
+Examples:
+- KPI "Average Salary" hasAggregationOperator kpi:Average
+- KPI "Employee Count" hasAggregationOperator kpi:Count
+- KPI "Total Salary Sum" hasAggregationOperator kpi:Sum
+
+Cardinality: 1..1 (exactly one operator per KPI)"""@en .
+
+kpi:hasGranularityDimension a owl:ObjectProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range kpi:GranularityDimension;
+  rdfs:label "hat Granularitätsdimension"@de, "has granularity dimension"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Beziehung (Genus: owl:ObjectProperty), die einer Leistungskennzahl eine oder mehrere Granularitätsdimensionen zuordnet, nach denen die Aggregationsergebnisse aufgeschlüsselt werden (Differentia specifica).
+
+Genus: Beziehungs-Eigenschaft (owl:ObjectProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist GranularityDimension
+3. Nicht-funktionale Eigenschaft (ein KPI kann 0..n Dimensionen haben)
+4. Definiert die GROUP-BY-Dimensionen der Aggregationsberechnung
+
+Semantik:
+- Subject: Die Leistungskennzahl
+- Predicate: "hat Granularitätsdimension"
+- Object: Eine Granularitätsdimension
+
+Beispiele:
+- KPI "Durchschnittsgehalt nach Geschlecht" hasGranularityDimension [geschlecht]
+- KPI "Durchschnittsgehalt nach Geschlecht und Bildungsniveau" hasGranularityDimension [geschlecht], hasGranularityDimension [bildungsniveau]
+- KPI "Gesamtdurchschnittsgehalt" (ohne Dimensionen)
+
+Kardinalität: 0..n (null oder mehr Dimensionen pro KPI)"""@de;
+  rdfs:comment """This property is a type of relationship (Genus: owl:ObjectProperty) that assigns one or more granularity dimensions to a key performance indicator, by which the aggregation results are broken down (Differentia specifica).
+
+Genus: Relationship Property (owl:ObjectProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is GranularityDimension
+3. Non-functional property (a KPI can have 0..n dimensions)
+4. Defines the GROUP BY dimensions of the aggregation computation
+
+Examples:
+- KPI "Average Salary by Gender" hasGranularityDimension [gender]
+- KPI "Average Salary by Gender and Education" hasGranularityDimension [gender], hasGranularityDimension [education]
+- KPI "Overall Average Salary" (no dimensions)
+
+Cardinality: 0..n (zero or more dimensions per KPI)"""@en .
+
+kpi:hasAggregationResult a owl:ObjectProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range kpi:AggregationResult;
+  rdfs:label "hat Aggregationsergebnis"@de, "has aggregation result"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Beziehung (Genus: owl:ObjectProperty), die einer Leistungskennzahl ihre berechneten Aggregationsergebnisse zuordnet (Differentia specifica).
+
+Genus: Beziehungs-Eigenschaft (owl:ObjectProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist AggregationResult
+3. Nicht-funktionale Eigenschaft (ein KPI hat 1..n Ergebnisse)
+4. Jedes Ergebnis repräsentiert eine Zeile der aggregierten Ergebnistabelle
+
+Semantik:
+- Subject: Die Leistungskennzahl
+- Predicate: "hat Aggregationsergebnis"
+- Object: Ein berechnetes Aggregationsergebnis
+
+Beispiele:
+- KPI "Durchschnittsgehalt nach Geschlecht" hasAggregationResult [Ergebnis für Männlich], hasAggregationResult [Ergebnis für Weiblich]
+- KPI "Durchschnittsgehalt nach Standort" hasAggregationResult [Ergebnis für Frankfurt], hasAggregationResult [Ergebnis für München], ...
+
+Kardinalität: 1..n (mindestens ein Ergebnis pro KPI)"""@de;
+  rdfs:comment """This property is a type of relationship (Genus: owl:ObjectProperty) that assigns computed aggregation results to a key performance indicator (Differentia specifica).
+
+Genus: Relationship Property (owl:ObjectProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is AggregationResult
+3. Non-functional property (a KPI has 1..n results)
+4. Each result represents one row of the aggregated result table
+
+Examples:
+- KPI "Average Salary by Gender" hasAggregationResult [result for Male], hasAggregationResult [result for Female]
+- KPI "Average Salary by Location" hasAggregationResult [result for Frankfurt], hasAggregationResult [result for Munich], ...
+
+Cardinality: 1..n (at least one result per KPI)"""@en .
+
+kpi:hasDimensionValue a owl:ObjectProperty;
+  rdfs:domain kpi:AggregationResult;
+  rdfs:range kpi:DimensionValue;
+  rdfs:label "hat Dimensionswert"@de, "has dimension value"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Beziehung (Genus: owl:ObjectProperty), die einem Aggregationsergebnis die konkreten Dimensionswerte zuordnet, die diese Ergebniszeile identifizieren (Differentia specifica).
+
+Genus: Beziehungs-Eigenschaft (owl:ObjectProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich AggregationResult
+2. Wertebereich ist DimensionValue
+3. Nicht-funktionale Eigenschaft (ein Ergebnis kann 0..n Dimensionswerte haben)
+4. Die Dimensionswerte identifizieren die Gruppe, zu der das Ergebnis gehört
+
+Semantik:
+- Subject: Das Aggregationsergebnis
+- Predicate: "hat Dimensionswert"
+- Object: Ein konkreter Dimensionswert
+
+Beispiele:
+- AggregationResult [avg=3456.78] hasDimensionValue [geschlecht="M"]
+- AggregationResult [avg=2890.12] hasDimensionValue [geschlecht="W"], hasDimensionValue [bildungsniveau="Abitur"]
+
+Kardinalität: 0..n (die Anzahl entspricht der Anzahl der Granularitätsdimensionen des KPI)"""@de;
+  rdfs:comment """This property is a type of relationship (Genus: owl:ObjectProperty) that assigns concrete dimension values to an aggregation result, identifying the result row (Differentia specifica).
+
+Genus: Relationship Property (owl:ObjectProperty)
+
+Differentia specifica:
+1. Domain is exclusively AggregationResult
+2. Range is DimensionValue
+3. Non-functional property (a result can have 0..n dimension values)
+4. The dimension values identify the group to which the result belongs
+
+Examples:
+- AggregationResult [avg=3456.78] hasDimensionValue [gender="M"]
+- AggregationResult [avg=2890.12] hasDimensionValue [gender="W"], hasDimensionValue [education="Abitur"]
+
+Cardinality: 0..n (count matches the number of granularity dimensions of the KPI)"""@en .
+
+kpi:forDimension a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:domain kpi:DimensionValue;
+  rdfs:range kpi:GranularityDimension;
+  rdfs:label "für Dimension"@de, "for dimension"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Beziehung (Genus: owl:ObjectProperty), die einen Dimensionswert seiner zugehörigen Granularitätsdimension zuordnet und damit angibt, welche Dimension durch diesen Wert spezifiziert wird (Differentia specifica).
+
+Genus: Beziehungs-Eigenschaft (owl:ObjectProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich DimensionValue
+2. Wertebereich ist GranularityDimension
+3. Funktionale Eigenschaft (ein Dimensionswert gehört zu genau einer Dimension)
+4. Stellt die Verbindung zwischen konkretem Wert und seiner semantischen Dimension her
+
+Semantik:
+- Subject: Der Dimensionswert
+- Predicate: "für Dimension"
+- Object: Die Granularitätsdimension, zu der dieser Wert gehört
+
+Beispiele:
+- DimensionValue ["M"] forDimension [geschlecht]
+- DimensionValue ["Frankfurt am Main"] forDimension [ort]
+
+Kardinalität: 1..1 (genau eine Dimension pro Dimensionswert)"""@de;
+  rdfs:comment """This property is a type of relationship (Genus: owl:ObjectProperty) that assigns a dimension value to its associated granularity dimension, indicating which dimension is specified by this value (Differentia specifica).
+
+Genus: Relationship Property (owl:ObjectProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domain is exclusively DimensionValue
+2. Range is GranularityDimension
+3. Functional property (a dimension value belongs to exactly one dimension)
+4. Establishes the connection between a concrete value and its semantic dimension
+
+Examples:
+- DimensionValue ["M"] forDimension [gender]
+- DimensionValue ["Frankfurt am Main"] forDimension [location]
+
+Cardinality: 1..1 (exactly one dimension per dimension value)"""@en .
+
+
+# ============================================================================
+# Data Properties
+# ============================================================================
+
+kpi:referenceOntologyURI a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range xsd:anyURI;
+  rdfs:label "Referenzontologie-URI"@de, "reference ontology URI"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die die URI der Referenzontologie enthält, aus deren Instanzdaten die Leistungskennzahl berechnet wird (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist xsd:anyURI
+3. Funktionale Eigenschaft (ein KPI referenziert genau eine Ontologie)
+4. Die URI identifiziert die Ontologie, deren Vokabular und Instanzdaten die Grundlage der Berechnung bilden
+5. Erlaubt die Rückverfolgung der Datenherkunft
+
+Semantik:
+Die referenceOntologyURI identifiziert die externe Ontologie, deren Konzepte und Instanzdaten als Grundlage für die Aggregationsberechnung dienen. Dies ermöglicht die vollständige Provenienz der Kennzahl.
+
+Beispiele:
+- referenceOntologyURI = "http://example.org/ontology/hr/1.0"^^xsd:anyURI
+- referenceOntologyURI = "http://example.org/ontology/inventory/1.0"^^xsd:anyURI
+
+Kardinalität: 1..1"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains the URI of the reference ontology from whose instance data the key performance indicator is computed (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is xsd:anyURI
+3. Functional property (a KPI references exactly one ontology)
+4. The URI identifies the ontology whose vocabulary and instance data form the basis of the computation
+5. Enables provenance traceability
+
+Examples:
+- referenceOntologyURI = "http://example.org/ontology/hr/1.0"^^xsd:anyURI
+- referenceOntologyURI = "http://example.org/ontology/inventory/1.0"^^xsd:anyURI
+
+Cardinality: 1..1"""@en .
+
+kpi:aggregationPropertyURI a owl:DatatypeProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range xsd:anyURI;
+  rdfs:label "Aggregationseigenschaft-URI"@de, "aggregation property URI"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die die URI der Eigenschaft aus der Referenzontologie enthält, über die die Aggregation durchgeführt wird (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist xsd:anyURI
+3. Nicht-funktionale Eigenschaft (ein KPI kann über mehrere Eigenschaften aggregieren)
+4. Die URI verweist auf eine Data Property oder Object Property der Referenzontologie
+5. Der Aggregationsoperator wird auf die Werte dieser Eigenschaft in den Instanzdaten angewendet
+
+Semantik:
+Die aggregationPropertyURI identifiziert die Eigenschaft der Referenzontologie, deren Werte durch den Aggregationsoperator zusammengefasst werden. Dies ist typischerweise eine numerische Dateneigenschaft.
+
+Beispiele:
+- aggregationPropertyURI = "http://example.org/hr/ontology/grossSalary"^^xsd:anyURI (Bruttogehalt)
+- aggregationPropertyURI = "http://example.org/hr/ontology/totalCompensation"^^xsd:anyURI (Gesamtvergütung)
+- aggregationPropertyURI = "http://example.org/hr/ontology/location"^^xsd:anyURI (Standort, für COUNT)
+
+Kardinalität: 1..n"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains the URI of the property from the reference ontology over which the aggregation is performed (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is xsd:anyURI
+3. Non-functional property (a KPI can aggregate over multiple properties)
+4. The URI points to a Data Property or Object Property of the reference ontology
+5. The aggregation operator is applied to the values of this property in the instance data
+
+Examples:
+- aggregationPropertyURI = "http://example.org/hr/ontology/grossSalary"^^xsd:anyURI (gross salary)
+- aggregationPropertyURI = "http://example.org/hr/ontology/totalCompensation"^^xsd:anyURI (total compensation)
+- aggregationPropertyURI = "http://example.org/hr/ontology/location"^^xsd:anyURI (location, for COUNT)
+
+Cardinality: 1..n"""@en .
+
+kpi:granularityPropertyURI a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:domain kpi:GranularityDimension;
+  rdfs:range xsd:anyURI;
+  rdfs:label "Granularitätseigenschaft-URI"@de, "granularity property URI"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die die URI der Eigenschaft aus der Referenzontologie enthält, die als Aufschlüsselungsdimension für die Aggregation verwendet wird (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich GranularityDimension
+2. Wertebereich ist xsd:anyURI
+3. Funktionale Eigenschaft (eine Dimension verweist auf genau eine Eigenschaft)
+4. Die URI identifiziert die Eigenschaft, nach deren Werten die Instanzdaten gruppiert werden (GROUP BY)
+
+Semantik:
+Die granularityPropertyURI verweist auf eine Eigenschaft der Referenzontologie, deren verschiedene Werte die Zeilen der Ergebnistabelle definieren. Die eindeutigen Kombinationen aller Dimensionswerte bilden die Gruppen.
+
+Beispiele:
+- granularityPropertyURI = "http://example.org/hr/ontology/gender"^^xsd:anyURI (Geschlecht)
+- granularityPropertyURI = "http://example.org/hr/ontology/location"^^xsd:anyURI (Standort)
+- granularityPropertyURI = "http://example.org/hr/ontology/educationLevel"^^xsd:anyURI (Bildungsniveau)
+
+Kardinalität: 1..1"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains the URI of the property from the reference ontology used as a breakdown dimension for the aggregation (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domain is exclusively GranularityDimension
+2. Range is xsd:anyURI
+3. Functional property (a dimension references exactly one property)
+4. The URI identifies the property by whose values the instance data is grouped (GROUP BY)
+
+Examples:
+- granularityPropertyURI = "http://example.org/hr/ontology/gender"^^xsd:anyURI (gender)
+- granularityPropertyURI = "http://example.org/hr/ontology/location"^^xsd:anyURI (location)
+- granularityPropertyURI = "http://example.org/hr/ontology/educationLevel"^^xsd:anyURI (education level)
+
+Cardinality: 1..1"""@en .
+
+kpi:aggregationValue a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:domain kpi:AggregationResult;
+  rdfs:range xsd:decimal;
+  rdfs:label "Aggregationswert"@de, "aggregation value"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die den berechneten numerischen Wert enthält, der sich aus der Anwendung des Aggregationsoperators auf die Instanzdaten einer bestimmten Gruppe ergibt (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich AggregationResult
+2. Wertebereich ist xsd:decimal
+3. Funktionale Eigenschaft (ein Ergebnis hat genau einen Aggregationswert)
+4. Enthält den physischen numerischen Wert nach Anwendung des Aggregationsoperators
+
+Semantik:
+Der aggregationValue ist das konkrete Ergebnis der Berechnung: der Durchschnittswert bei AVG, die Summe bei SUM, die Anzahl bei COUNT usw.
+
+Beispiele:
+- aggregationValue = "3456.78"^^xsd:decimal (Durchschnittsgehalt für Männer)
+- aggregationValue = "2890.12"^^xsd:decimal (Durchschnittsgehalt für Frauen)
+- aggregationValue = "871"^^xsd:decimal (Anzahl Mitarbeiter in Berlin)
+
+Kardinalität: 1..1"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains the computed numerical value resulting from the application of the aggregation operator to the instance data of a specific group (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domain is exclusively AggregationResult
+2. Range is xsd:decimal
+3. Functional property (a result has exactly one aggregation value)
+4. Contains the physical numerical value after application of the aggregation operator
+
+Examples:
+- aggregationValue = "3456.78"^^xsd:decimal (average salary for males)
+- aggregationValue = "2890.12"^^xsd:decimal (average salary for females)
+- aggregationValue = "871"^^xsd:decimal (employee count in Berlin)
+
+Cardinality: 1..1"""@en .
+
+kpi:dimensionLabel a owl:DatatypeProperty;
+  rdfs:domain kpi:GranularityDimension;
+  rdfs:range xsd:string;
+  rdfs:label "Dimensionsbezeichnung"@de, "dimension label"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die einen menschenlesbaren Bezeichner für eine Granularitätsdimension enthält (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich GranularityDimension
+2. Wertebereich ist xsd:string
+3. Optionale Eigenschaft zur Verbesserung der Lesbarkeit
+4. Kann mehrsprachig sein (über Sprachkennzeichnungen)
+
+Beispiele:
+- dimensionLabel = "Geschlecht"@de / "Gender"@en
+- dimensionLabel = "Standort"@de / "Location"@en
+- dimensionLabel = "Berufsausbildung"@de / "Professional Training"@en
+
+Kardinalität: 0..n"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains a human-readable label for a granularity dimension (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domain is exclusively GranularityDimension
+2. Range is xsd:string
+3. Optional property for improving readability
+4. Can be multilingual (via language tags)
+
+Examples:
+- dimensionLabel = "Geschlecht"@de / "Gender"@en
+- dimensionLabel = "Standort"@de / "Location"@en
+
+Cardinality: 0..n"""@en .
+
+kpi:dimensionValueLiteral a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:domain kpi:DimensionValue;
+  rdfs:range xsd:string;
+  rdfs:label "Dimensionswertliteral"@de, "dimension value literal"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die den konkreten Literalwert eines Dimensionswerts als Zeichenkette enthält (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich DimensionValue
+2. Wertebereich ist xsd:string
+3. Funktionale Eigenschaft (ein Dimensionswert hat genau ein Literal)
+4. Enthält die Zeichenkettenrepräsentation des konkreten Dimensionswerts
+5. Entspricht dem Wert, der bei der GROUP-BY-Operation zurückgegeben wird
+
+Semantik:
+Der dimensionValueLiteral enthält den tatsächlichen Wert, den die Eigenschaft der Referenzontologie für eine bestimmte Gruppe von Instanzen hat. Er wird als Zeichenkette gespeichert, unabhängig vom ursprünglichen Datentyp der Referenzontologie.
+
+Beispiele:
+- dimensionValueLiteral = "M" (Geschlecht männlich)
+- dimensionValueLiteral = "Frankfurt am Main" (Standort)
+- dimensionValueLiteral = "Abschluss einer anerkannten Berufsausbildung" (Berufsausbildung)
+
+Kardinalität: 1..1"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains the concrete literal value of a dimension value as a string (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty, owl:FunctionalProperty)
+
+Differentia specifica:
+1. Domain is exclusively DimensionValue
+2. Range is xsd:string
+3. Functional property (a dimension value has exactly one literal)
+4. Contains the string representation of the concrete dimension value
+5. Corresponds to the value returned by the GROUP BY operation
+
+Examples:
+- dimensionValueLiteral = "M" (male gender)
+- dimensionValueLiteral = "Frankfurt am Main" (location)
+- dimensionValueLiteral = "Completed recognized vocational training" (professional training)
+
+Cardinality: 1..1"""@en .
+
+kpi:kpiLabel a owl:DatatypeProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range xsd:string;
+  rdfs:label "KPI-Bezeichnung"@de, "KPI label"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die einen menschenlesbaren Bezeichner für eine Leistungskennzahl enthält (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist xsd:string
+3. Optionale Eigenschaft zur Verbesserung der Lesbarkeit
+4. Beschreibt den Zweck der Kennzahl in natürlicher Sprache
+
+Beispiele:
+- kpiLabel = "Durchschnittsgehalt nach Geschlecht"@de / "Average Salary by Gender"@en
+- kpiLabel = "Durchschnittsgehalt nach Standort"@de / "Average Salary by Location"@en
+- kpiLabel = "Anzahl Mitarbeiter nach Standort"@de / "Employee Count by Location"@en
+
+Kardinalität: 0..n"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains a human-readable label for a key performance indicator (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is xsd:string
+3. Optional property for improving readability
+4. Describes the purpose of the metric in natural language
+
+Examples:
+- kpiLabel = "Durchschnittsgehalt nach Geschlecht"@de / "Average Salary by Gender"@en
+- kpiLabel = "Durchschnittsgehalt nach Standort"@de / "Average Salary by Location"@en
+
+Cardinality: 0..n"""@en .
+
+kpi:dataSourceURI a owl:DatatypeProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range xsd:anyURI;
+  rdfs:label "Datenquellen-URI"@de, "data source URI"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die die URI der Datenquelle enthält, aus der die Instanzdaten für die Aggregationsberechnung stammen (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist xsd:anyURI
+3. Optionale Eigenschaft zur Spezifikation der Datenquelle
+4. Kann einen Named Graph, einen SPARQL-Endpunkt oder eine andere Datenquelle identifizieren
+
+Semantik:
+Die dataSourceURI identifiziert die konkrete Datenquelle, aus der die Instanzdaten abgerufen werden. In SPARQL-Abfragen entspricht dies typischerweise der FROM-Klausel (Named Graph URI).
+
+Beispiele:
+- dataSourceURI = "http://localhost:8080/graph/bulk1"^^xsd:anyURI (Named Graph)
+- dataSourceURI = "http://example.org/sparql"^^xsd:anyURI (SPARQL-Endpunkt)
+
+Kardinalität: 0..n"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains the URI of the data source from which the instance data for the aggregation computation originates (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is xsd:anyURI
+3. Optional property for specifying the data source
+4. Can identify a named graph, a SPARQL endpoint, or another data source
+
+Examples:
+- dataSourceURI = "http://localhost:8080/graph/bulk1"^^xsd:anyURI (named graph)
+- dataSourceURI = "http://example.org/sparql"^^xsd:anyURI (SPARQL endpoint)
+
+Cardinality: 0..n"""@en .
+
+kpi:filterExpression a owl:DatatypeProperty;
+  rdfs:domain kpi:KeyPerformanceIndicator;
+  rdfs:range xsd:string;
+  rdfs:label "Filterausdruck"@de, "filter expression"@en;
+  rdfs:isDefinedBy kpi:;
+  skos:definition """Diese Eigenschaft ist eine Art von Dateneigenschaft (Genus: owl:DatatypeProperty), die einen optionalen Filterausdruck enthält, der die Instanzdaten vor der Aggregation einschränkt (Differentia specifica).
+
+Genus: Dateneigenschaft (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domäne ist ausschließlich KeyPerformanceIndicator
+2. Wertebereich ist xsd:string
+3. Optionale Eigenschaft zur Dokumentation von Filterkriterien
+4. Enthält den Filterausdruck in SPARQL-Syntax oder natürlicher Sprache
+5. Ermöglicht die Reproduzierbarkeit der Berechnung
+
+Semantik:
+Der filterExpression dokumentiert Einschränkungen, die auf die Instanzdaten angewendet werden, bevor die Aggregation durchgeführt wird. Dies entspricht der FILTER-Klausel in SPARQL-Abfragen.
+
+Beispiele:
+- filterExpression = "FILTER(?brutto_monthly > 0)" (nur positive Bruttogehälter)
+- filterExpression = "FILTER(?alter >= 18 && ?alter <= 65)" (Erwerbstätige)
+
+Kardinalität: 0..n"""@de;
+  rdfs:comment """This property is a type of data property (Genus: owl:DatatypeProperty) that contains an optional filter expression restricting the instance data before aggregation (Differentia specifica).
+
+Genus: Data Property (owl:DatatypeProperty)
+
+Differentia specifica:
+1. Domain is exclusively KeyPerformanceIndicator
+2. Range is xsd:string
+3. Optional property for documenting filter criteria
+4. Contains the filter expression in SPARQL syntax or natural language
+5. Enables reproducibility of the computation
+
+Examples:
+- filterExpression = "FILTER(?brutto_monthly > 0)" (only positive gross salaries)
+- filterExpression = "FILTER(?age >= 18 && ?age <= 65)" (working age)
+
+Cardinality: 0..n"""@en .
+
+
+# ============================================================================
+# SHACL Shapes
+# ============================================================================
+
+kpi:KeyPerformanceIndicatorShape a sh:NodeShape;
+  sh:targetClass kpi:KeyPerformanceIndicator;
+  rdfs:label "KPI Shape"@en, "KPI-Shape"@de;
+  rdfs:isDefinedBy kpi:;
+
+  sh:property [
+    sh:path kpi:referenceOntologyURI;
+    sh:datatype xsd:anyURI;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "reference ontology URI"@en, "Referenzontologie-URI"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:aggregationPropertyURI;
+    sh:datatype xsd:anyURI;
+    sh:minCount 1;
+    sh:name "aggregation property URI"@en, "Aggregationseigenschaft-URI"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:hasAggregationOperator;
+    sh:class kpi:AggregationOperator;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "has aggregation operator"@en, "hat Aggregationsoperator"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:hasGranularityDimension;
+    sh:class kpi:GranularityDimension;
+    sh:name "has granularity dimension"@en, "hat Granularitätsdimension"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:hasAggregationResult;
+    sh:class kpi:AggregationResult;
+    sh:minCount 1;
+    sh:name "has aggregation result"@en, "hat Aggregationsergebnis"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:kpiLabel;
+    sh:datatype xsd:string;
+    sh:name "KPI label"@en, "KPI-Bezeichnung"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:dataSourceURI;
+    sh:datatype xsd:anyURI;
+    sh:name "data source URI"@en, "Datenquellen-URI"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:filterExpression;
+    sh:datatype xsd:string;
+    sh:name "filter expression"@en, "Filterausdruck"@de;
+  ] .
+
+kpi:GranularityDimensionShape a sh:NodeShape;
+  sh:targetClass kpi:GranularityDimension;
+  rdfs:label "Granularity Dimension Shape"@en, "Granularitätsdimension-Shape"@de;
+  rdfs:isDefinedBy kpi:;
+
+  sh:property [
+    sh:path kpi:granularityPropertyURI;
+    sh:datatype xsd:anyURI;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "granularity property URI"@en, "Granularitätseigenschaft-URI"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:dimensionLabel;
+    sh:datatype xsd:string;
+    sh:name "dimension label"@en, "Dimensionsbezeichnung"@de;
+  ] .
+
+kpi:AggregationResultShape a sh:NodeShape;
+  sh:targetClass kpi:AggregationResult;
+  rdfs:label "Aggregation Result Shape"@en, "Aggregationsergebnis-Shape"@de;
+  rdfs:isDefinedBy kpi:;
+
+  sh:property [
+    sh:path kpi:aggregationValue;
+    sh:datatype xsd:decimal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "aggregation value"@en, "Aggregationswert"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:hasDimensionValue;
+    sh:class kpi:DimensionValue;
+    sh:name "has dimension value"@en, "hat Dimensionswert"@de;
+  ] .
+
+kpi:DimensionValueShape a sh:NodeShape;
+  sh:targetClass kpi:DimensionValue;
+  rdfs:label "Dimension Value Shape"@en, "Dimensionswert-Shape"@de;
+  rdfs:isDefinedBy kpi:;
+
+  sh:property [
+    sh:path kpi:forDimension;
+    sh:class kpi:GranularityDimension;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "for dimension"@en, "für Dimension"@de;
+  ];
+
+  sh:property [
+    sh:path kpi:dimensionValueLiteral;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "dimension value literal"@en, "Dimensionswertliteral"@de;
+  ] .

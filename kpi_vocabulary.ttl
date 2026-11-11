@@ -1,0 +1,238 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix kpi: <https://semantic.adorsys.com/meta/kpi/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# ============================================================================
+# SKOS Vocabulary — Aggregation Operators
+# ============================================================================
+
+<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> a skos:ConceptScheme;
+  skos:prefLabel "Aggregationsoperator-Vokabular"@de, "Aggregation Operator Vocabulary"@en;
+  rdfs:label "Aggregationsoperator-Vokabular"@de, "Aggregation Operator Vocabulary"@en;
+  dcterms:title "Kontrolliertes Vokabular der Aggregationsoperatoren für Leistungskennzahlen"@de,
+                "Controlled Vocabulary of Aggregation Operators for Key Performance Indicators"@en;
+  dcterms:description """
+        Kontrolliertes SKOS-Vokabular aller Aggregationsoperatoren, die zur Berechnung von
+        Leistungskennzahlen (KPIs) über Instanzdaten verwendet werden können. Umfasst statistische
+        Standardoperatoren wie Summe, Durchschnitt, Anzahl, Minimum und Maximum sowie erweiterte
+        Operatoren wie Median, Standardabweichung und Varianz.
+
+        Dieses Vokabular wird von der KPI-Ontologie (kpi:1.0) referenziert und definiert die
+        zulässigen Aggregationsfunktionen als SKOS-Konzepte.
+    """@de;
+  dcterms:description """
+        Controlled SKOS vocabulary of all aggregation operators that can be used to compute
+        Key Performance Indicators (KPIs) over instance data. Includes standard statistical
+        operators such as sum, average, count, minimum and maximum, as well as extended
+        operators such as median, standard deviation and variance.
+
+        This vocabulary is referenced by the KPI Ontology (kpi:1.0) and defines the
+        permissible aggregation functions as SKOS concepts.
+    """@en;
+  skos:definition "Kontrolliertes Vokabular aller Aggregationsoperatoren, die zur Berechnung von Leistungskennzahlen über Instanzdaten verwendet werden können. Umfasst statistische Standardoperatoren wie Summe, Durchschnitt, Anzahl, Minimum und Maximum sowie erweiterte Operatoren wie Median, Standardabweichung und Varianz."@de;
+  skos:definition "Controlled vocabulary of all aggregation operators that can be used to compute key performance indicators over instance data. Includes standard statistical operators such as sum, average, count, minimum and maximum, as well as extended operators such as median, standard deviation and variance."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  dcterms:contributor "Johann Bergh <Johann.Bergh@adorsys.com>";
+  dcterms:creator "Johann Bergh <Johann.Bergh@adorsys.com>" ;
+  dcterms:created "2026-04-08"^^xsd:date ;
+  dcterms:modified "2026-04-09"^^xsd:date ;
+  owl:versionInfo "1.0" ;
+  <http://purl.org/spar/pso/hasStatus> <http://purl.org/spar/pso/draft> ;
+  skos:hasTopConcept kpi:Sum, kpi:Count, kpi:Average, kpi:Min, kpi:Max,
+                     kpi:Median, kpi:StandardDeviation, kpi:Variance,
+                     kpi:CountDistinct, kpi:GroupConcat, kpi:Sample .
+
+# ============================================================================
+# Aggregation Operator Class
+# ============================================================================
+
+kpi:AggregationOperator a owl:Class;
+  rdfs:subClassOf skos:Concept;
+  rdfs:label "Aggregationsoperator"@de, "Aggregation Operator"@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:definition """Ein Aggregationsoperator ist eine Art von Konzept (Genus: skos:Concept), das eine mathematische oder statistische Funktion repräsentiert, die auf eine Menge von Werten angewendet wird, um einen einzelnen zusammenfassenden Wert zu erzeugen (Differentia specifica).
+
+Genus: Konzept (skos:Concept)
+
+Differentia specifica:
+1. Repräsentiert eine mathematische/statistische Aggregationsfunktion
+2. Wird auf eine Menge numerischer Werte aus Instanzdaten angewendet
+3. Erzeugt genau einen zusammenfassenden Ausgabewert
+4. Ist Teil des kontrollierten Vokabulars <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>
+
+Beispiele:
+- kpi:Average (Durchschnitt) - Berechnet den arithmetischen Mittelwert
+- kpi:Sum (Summe) - Berechnet die Gesamtsumme
+- kpi:Count (Anzahl) - Zählt die Anzahl der Werte
+
+Invarianten:
+- Muss genau einem skos:ConceptScheme zugeordnet sein (<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>)
+- Muss eine skos:notation haben"""@de;
+  rdfs:comment """An Aggregation Operator is a type of concept (Genus: skos:Concept) that represents a mathematical or statistical function applied to a set of values to produce a single summary value (Differentia specifica).
+
+Genus: Concept (skos:Concept)
+
+Differentia specifica:
+1. Represents a mathematical/statistical aggregation function
+2. Applied to a set of numerical values from instance data
+3. Produces exactly one summary output value
+4. Is part of the controlled vocabulary <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>
+
+Examples:
+- kpi:Average - Computes the arithmetic mean
+- kpi:Sum - Computes the total sum
+- kpi:Count - Counts the number of values
+
+Invariants:
+- Must be assigned to exactly one skos:ConceptScheme (<https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>)
+- Must have a skos:notation"""@en .
+
+# ============================================================================
+# Aggregation Operator Individuals
+# ============================================================================
+
+kpi:Sum a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Summe"@de, "Sum"@en;
+  rdfs:label "Summe"@de, "Sum"@en;
+  skos:notation "SUM";
+  skos:definition "Berechnet die Gesamtsumme aller Werte in der aggregierten Menge. Entspricht der SPARQL-Funktion SUM()."@de;
+  skos:definition "Computes the total sum of all values in the aggregated set. Corresponds to the SPARQL function SUM()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Count a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Anzahl"@de, "Count"@en;
+  rdfs:label "Anzahl"@de, "Count"@en;
+  skos:notation "COUNT";
+  skos:definition "Zählt die Gesamtanzahl der Werte in der aggregierten Menge, einschließlich Duplikate. Entspricht der SPARQL-Funktion COUNT()."@de;
+  skos:definition "Counts the total number of values in the aggregated set, including duplicates. Corresponds to the SPARQL function COUNT()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Average a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Durchschnitt"@de, "Average"@en;
+  rdfs:label "Durchschnitt"@de, "Average"@en;
+  skos:notation "AVG";
+  skos:definition "Berechnet den arithmetischen Mittelwert aller Werte in der aggregierten Menge. Entspricht der SPARQL-Funktion AVG()."@de;
+  skos:definition "Computes the arithmetic mean of all values in the aggregated set. Corresponds to the SPARQL function AVG()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Min a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Minimum"@de, "Minimum"@en;
+  rdfs:label "Minimum"@de, "Minimum"@en;
+  skos:notation "MIN";
+  skos:definition "Ermittelt den kleinsten Wert in der aggregierten Menge. Entspricht der SPARQL-Funktion MIN()."@de;
+  skos:definition "Determines the smallest value in the aggregated set. Corresponds to the SPARQL function MIN()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Max a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Maximum"@de, "Maximum"@en;
+  rdfs:label "Maximum"@de, "Maximum"@en;
+  skos:notation "MAX";
+  skos:definition "Ermittelt den größten Wert in der aggregierten Menge. Entspricht der SPARQL-Funktion MAX()."@de;
+  skos:definition "Determines the largest value in the aggregated set. Corresponds to the SPARQL function MAX()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Median a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Median"@de, "Median"@en;
+  rdfs:label "Median"@de, "Median"@en;
+  skos:notation "MEDIAN";
+  skos:definition "Ermittelt den Zentralwert der sortierten aggregierten Menge, der die obere von der unteren Hälfte trennt. Nicht als native SPARQL-Funktion verfügbar, kann aber durch Unterabfragen berechnet werden."@de;
+  skos:definition "Determines the middle value of the sorted aggregated set, separating the upper half from the lower half. Not available as a native SPARQL function but can be computed through subqueries."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:StandardDeviation a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Standardabweichung"@de, "Standard Deviation"@en;
+  rdfs:label "Standardabweichung"@de, "Standard Deviation"@en;
+  skos:notation "STDEV";
+  skos:definition "Berechnet die Standardabweichung der Werte in der aggregierten Menge als Maß für die Streuung um den Mittelwert. Nicht als native SPARQL-Funktion verfügbar, aber in einigen Triplestore-Erweiterungen unterstützt."@de;
+  skos:definition "Computes the standard deviation of values in the aggregated set as a measure of dispersion around the mean. Not available as a native SPARQL function but supported in some triplestore extensions."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Variance a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Varianz"@de, "Variance"@en;
+  rdfs:label "Varianz"@de, "Variance"@en;
+  skos:notation "VAR";
+  skos:definition "Berechnet die Varianz der Werte in der aggregierten Menge als Quadrat der Standardabweichung. Nicht als native SPARQL-Funktion verfügbar, aber in einigen Triplestore-Erweiterungen unterstützt."@de;
+  skos:definition "Computes the variance of values in the aggregated set as the square of the standard deviation. Not available as a native SPARQL function but supported in some triplestore extensions."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:CountDistinct a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Eindeutige Anzahl"@de, "Count Distinct"@en;
+  rdfs:label "Eindeutige Anzahl"@de, "Count Distinct"@en;
+  skos:notation "COUNT_DISTINCT";
+  skos:definition "Zählt die Anzahl der eindeutigen (verschiedenen) Werte in der aggregierten Menge. Entspricht der SPARQL-Funktion COUNT(DISTINCT ...)."@de;
+  skos:definition "Counts the number of unique (distinct) values in the aggregated set. Corresponds to the SPARQL function COUNT(DISTINCT ...)."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:GroupConcat a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Gruppenverkettung"@de, "Group Concatenation"@en;
+  rdfs:label "Gruppenverkettung"@de, "Group Concatenation"@en;
+  skos:notation "GROUP_CONCAT";
+  skos:definition "Verkettet alle Zeichenkettenwerte in der aggregierten Menge zu einer einzigen Zeichenkette mit einem Trennzeichen. Entspricht der SPARQL-Funktion GROUP_CONCAT()."@de;
+  skos:definition "Concatenates all string values in the aggregated set into a single string with a separator. Corresponds to the SPARQL function GROUP_CONCAT()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+kpi:Sample a skos:Concept, kpi:AggregationOperator;
+  skos:inScheme <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:topConceptOf <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+  skos:prefLabel "Stichprobe"@de, "Sample"@en;
+  rdfs:label "Stichprobe"@de, "Sample"@en;
+  skos:notation "SAMPLE";
+  skos:definition "Wählt einen beliebigen repräsentativen Wert aus der aggregierten Menge aus. Entspricht der SPARQL-Funktion SAMPLE()."@de;
+  skos:definition "Selects an arbitrary representative value from the aggregated set. Corresponds to the SPARQL function SAMPLE()."@en;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0> .
+
+
+# ============================================================================
+# SHACL Shape — Aggregation Operator
+# ============================================================================
+
+kpi:AggregationOperatorShape a sh:NodeShape;
+  sh:targetClass kpi:AggregationOperator;
+  rdfs:label "Aggregation Operator Shape"@en, "Aggregationsoperator-Shape"@de;
+  rdfs:isDefinedBy <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+
+  sh:property [
+    sh:path skos:inScheme;
+    sh:hasValue <https://semantic.adorsys.com/meta/kpi/AggregationOperatorScheme/1.0>;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "in scheme"@en, "im Vokabular"@de;
+  ];
+
+  sh:property [
+    sh:path skos:notation;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:name "notation"@en, "Notation"@de;
+  ];
+
+  sh:property [
+    sh:path skos:prefLabel;
+    sh:minCount 1;
+    sh:name "preferred label"@en, "bevorzugte Bezeichnung"@de;
+  ] .

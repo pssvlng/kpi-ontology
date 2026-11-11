@@ -1,0 +1,94 @@
+@prefix inst: <https://data.datev.de/kpi/instance/generated/> .
+@prefix kpi: <https://data.datev.de/kpi/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+inst:kpi1 a kpi:KeyPerformanceIndicator ;
+    kpi:aggregationPropertyURI "http://datev.de/dalo/ontology#current_gross_payment"^^xsd:anyURI ;
+    kpi:dataSourceURI "http://localhost:8080/graph/bulk1"^^xsd:anyURI ;
+    kpi:hasAggregationOperator kpi:Average ;
+    kpi:hasAggregationResult inst:result-01,
+        inst:result-02,
+        inst:result-03,
+        inst:result-04,
+        inst:result-05 ;
+    kpi:hasGranularityDimension inst:dim-gender-description,
+        inst:dim-highest-level-of-education-description ;
+    kpi:kpiLabel "AVG of Current Gross Payment by gender Description and Highest Level of Education Description"@de,
+        "AVG of Current Gross Payment by gender Description and Highest Level of Education Description"@en ;
+    kpi:referenceOntologyURI "https://brickschema.org/schema/Brick#"^^xsd:anyURI .
+
+inst:dv-01-geschlechtdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "männlich" ;
+    kpi:forDimension inst:dim-gender-description .
+
+inst:dv-01-highestlevelofeducationdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "Haupt-/Volksschulabschluss" ;
+    kpi:forDimension inst:dim-highest-level-of-education-description .
+
+inst:dv-02-geschlechtdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "männlich" ;
+    kpi:forDimension inst:dim-gender-description .
+
+inst:dv-02-highestlevelofeducationdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "Mittlere Reife oder gleichwertiger Abschluss" ;
+    kpi:forDimension inst:dim-highest-level-of-education-description .
+
+inst:dv-03-geschlechtdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "weiblich" ;
+    kpi:forDimension inst:dim-gender-description .
+
+inst:dv-03-highestlevelofeducationdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "Abitur/Fachabitur" ;
+    kpi:forDimension inst:dim-highest-level-of-education-description .
+
+inst:dv-04-geschlechtdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "weiblich" ;
+    kpi:forDimension inst:dim-gender-description .
+
+inst:dv-04-highestlevelofeducationdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "Abschluss unbekannt" ;
+    kpi:forDimension inst:dim-highest-level-of-education-description .
+
+inst:dv-05-geschlechtdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "männlich" ;
+    kpi:forDimension inst:dim-gender-description .
+
+inst:dv-05-highestlevelofeducationdescription a kpi:DimensionValue ;
+    kpi:dimensionValueLiteral "Abitur/Fachabitur" ;
+    kpi:forDimension inst:dim-highest-level-of-education-description .
+
+inst:result-01 a kpi:AggregationResult ;
+    kpi:aggregationValue 1906.5447440944881 ;
+    kpi:hasDimensionValue inst:dv-01-geschlechtdescription,
+        inst:dv-01-highestlevelofeducationdescription .
+
+inst:result-02 a kpi:AggregationResult ;
+    kpi:aggregationValue 718.16 ;
+    kpi:hasDimensionValue inst:dv-02-geschlechtdescription,
+        inst:dv-02-highestlevelofeducationdescription .
+
+inst:result-03 a kpi:AggregationResult ;
+    kpi:aggregationValue 4354.94383148405 ;
+    kpi:hasDimensionValue inst:dv-03-geschlechtdescription,
+        inst:dv-03-highestlevelofeducationdescription .
+
+inst:result-04 a kpi:AggregationResult ;
+    kpi:aggregationValue 199.98601186552406 ;
+    kpi:hasDimensionValue inst:dv-04-geschlechtdescription,
+        inst:dv-04-highestlevelofeducationdescription .
+
+inst:result-05 a kpi:AggregationResult ;
+    kpi:aggregationValue 2076.0180837004405 ;
+    kpi:hasDimensionValue inst:dv-05-geschlechtdescription,
+        inst:dv-05-highestlevelofeducationdescription .
+
+inst:dim-gender-description a kpi:GranularityDimension ;
+    kpi:dimensionLabel "gender Description"@de,
+        "gender Description"@en ;
+    kpi:granularityPropertyURI "http://datev.de/dalo/ontology#geschlechtDescription"^^xsd:anyURI .
+
+inst:dim-highest-level-of-education-description a kpi:GranularityDimension ;
+    kpi:dimensionLabel "Highest Level of Education Description"@de,
+        "Highest Level of Education Description"@en ;
+    kpi:granularityPropertyURI "http://datev.de/dalo/ontology#highestLevelOfEducationDescription"^^xsd:anyURI .
+
